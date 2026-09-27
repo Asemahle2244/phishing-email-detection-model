@@ -1,1 +1,1 @@
-# phishing-email-detection-model
+# Machine learning phishing email detection system
