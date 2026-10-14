@@ -18,6 +18,9 @@ env/
 # Environment variables
 .env
 
+# Local email dataset
+/data/phishing_email.csv
+
 # OS files
 .DS_Store
 Thumbs.db
