@@ -1,0 +1,7 @@
+# Minimal dependencies for running only the API (used by the Dockerfile)
+numpy>=2.0
+scikit-learn>=1.5
+joblib>=1.4
+torch>=2.5
+fastapi>=0.115
+uvicorn[standard]>=0.30
