@@ -26,3 +26,9 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+# Large data files (GitHub rejects files over 100 MB; these are not used for training)
+data/archive.zip
+data/archive/phishing_email.csv
+data/archive/Enron.csv
+data/archive/CEAS_08.csv

@@ -26,7 +26,7 @@ SAMPLES = {
         "suspension you must verify your identity within 24 hours.\n\nClick here to confirm your details: "
         "http://secure-account-verify.com/login\n\nFailure to act will result in loss of access!!!\n\nSecurity Team",
     ),
-    "Spam example": (
+    "Spam example (not phishing)": (
         "Cheap replica watches - 80% off today only",
         "Buy luxury replica watches at the lowest prices online! Rolex, Omega, Breitling. "
         "Free shipping worldwide. Order now at www.best-replicas.biz $$$",
