@@ -1,5 +1,12 @@
 # Machine learning phishing email detection system
 
+**ITRI625 group project** · Repository: <https://github.com/Asemahle2244/phishing-email-detection-model>
+
+| Result (held-out test set, 4,256 emails) | Accuracy | Precision | Recall | F1 | AUC-ROC |
+|---|---|---|---|---|---|
+| **BiLSTM (main model)** | 0.9955 | 0.9833 | 0.9902 | 0.9868 | 0.9996 |
+| TF-IDF + Logistic Regression (baseline) | 0.9946 | 0.9929 | 0.9748 | 0.9838 | 0.9996 |
+
 ITRI625 project: a deep-learning model that classifies emails as **phishing** or **legitimate**. The model is served through a **FastAPI** endpoint and used from a **Tkinter desktop app**.
 
 | Component | Technology | Location |
@@ -28,11 +35,19 @@ Mac/Linux: `source .venv/bin/activate` instead of `.venv\Scripts\activate`.
 
 > If `pip install torch` fails on a very new Python version, create the venv with Python 3.12 instead: `py -3.12 -m venv .venv`.
 
-**Dataset:** put `CEAS_08.csv` in `data/`. It comes from the Kaggle *Phishing Email Dataset* collection. Any other CSV from that collection with `subject`, `body` and `label` columns, such as `Nazario.csv` or `Nigerian_Fraud.csv`, is picked up automatically when it's in `data/`.
+**Dataset:** the Kaggle *Phishing Email Dataset* collection (naserabdullahalam/phishing-email-dataset). Download the zip, extract it into `data/` (so the files sit in `data/archive/`), and keep `CEAS_08.csv` in `data/`. The notebook uses:
+
+| File | Used as |
+|---|---|
+| `Nazario.csv` (real phishing, 2015–2022) | all rows → phishing (1) |
+| `Nigerian_Fraud.csv` (advance-fee fraud) | all rows → phishing (1) |
+| `CEAS_08.csv`, `SpamAssasin.csv`, `Ling.csv` | legitimate rows only → legitimate (0); their spam is dropped, because spam is not phishing |
+
+That gives 28,368 unique emails (4,897 phishing, 23,804 legitimate before de-duplication). `phishing_email.csv`, `Enron.csv` and `archive.zip` are not used and are git-ignored (one is over GitHub's 100 MB limit).
 
 ## 2. Train the model
 
-Open `notebooks/02_model_training.ipynb` in VS Code or Jupyter and choose **Run All**. On a laptop CPU this takes roughly 10–25 minutes. The notebook:
+Open `notebooks/02_model_training.ipynb` in VS Code or Jupyter and choose **Run All**. On a laptop CPU this takes roughly 10–25 minutes (about 7 epochs with early stopping). The notebook:
 
 1. loads and cleans the data, and removes duplicate emails (to prevent leakage)
 2. makes a stratified 70/15/15 **train / validation / test** split
@@ -91,7 +106,7 @@ The same image can be deployed to Render, Railway or Hugging Face Spaces (Docker
 
 ```
 phishing-email-detection-model/
-├── data/                     CEAS_08.csv (+ any extra CSVs)
+├── data/                     CEAS_08.csv + archive/ (Nazario, Nigerian_Fraud, SpamAssasin, Ling)
 ├── notebooks/
 │   ├── phishing_email_detection.ipynb   initial data exploration
 │   └── 02_model_training.ipynb          full pipeline (run this)
