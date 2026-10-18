@@ -6,8 +6,8 @@
     "num_layers": 1,
     "dropout": 0.3
   },
-  "threshold": 0.22585448622703552,
-  "baseline_threshold": 0.5608218311496223,
+  "threshold": 0.8729077577590942,
+  "baseline_threshold": 0.4618495633505291,
   "best_epoch": 7,
   "epochs_run": 10,
   "trained_on": [
@@ -17,12 +17,12 @@
   "val_size": 4914,
   "test_size": 4915,
   "test_metrics": {
-    "accuracy": 0.9933,
-    "precision": 0.9907,
-    "recall": 0.9953,
-    "f1": 0.993,
+    "accuracy": 0.9941,
+    "precision": 0.9953,
+    "recall": 0.9923,
+    "f1": 0.9938,
     "auc_roc": 0.9998,
     "pr_auc": 0.9998
   },
-  "trained_at": "2026-10-12 15:07"
+  "trained_at": "2026-10-18 05:03"
 }
